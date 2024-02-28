@@ -1,0 +1,88 @@
+import time
+
+# Enum to represent the current state of the elevator
+class ElevatorState:
+    IDLE = 0
+    UP = 1
+    DOWN = 2
+
+def move_up(destination_floor):
+    for current_floor in range(destination_floor):
+        print(f"Elevator at floor {current_floor}")
+        # Add code to control the elevator motor and update state
+
+        # Simulate 1-second delay between floors
+        time.sleep(1)
+
+    print(f"Elevator arrived at floor {destination_floor}")
+
+    # Open and close the elevator door
+    response = input("Press 'C' to open the door: ")
+    if response == 'C':
+        print("Elevator door opening.")
+        # Simulate 3-second delay for the door to stay open
+        time.sleep(3)
+        print("Elevator door closing.")
+
+    # Add code to control the elevator motor and update state
+
+def move_down(destination_floor):
+    for current_floor in range(destination_floor, 0, -1):
+        print(f"Elevator at floor {current_floor}")
+        # Add code to control the elevator motor and update state
+
+        # Simulate 1-second delay between floors
+        time.sleep(1)
+
+    print(f"Elevator arrived at floor {destination_floor}")
+
+    # Open and close the elevator door
+    response = input("Press 'C' to open the door: ")
+    if response == 'C':
+        print("Elevator door opening.")
+        # Simulate 3-second delay for the door to stay open
+        time.sleep(3)
+        print("Elevator door closing.")
+
+    # Add code to control the elevator motor and update state
+
+def main():
+    current_state = ElevatorState.IDLE
+
+    while True:
+        # Display the menu
+        print("\nElevator Control Menu:")
+        print("1. Move Up")
+        print("2. Move Down")
+        print("0. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            destination_floor = int(input("Enter the desired floor (between basement and level 50): "))
+            # Validate the input floor range
+            if -1 < destination_floor <= 50:
+                # Request to move the elevator up
+                if current_state == ElevatorState.IDLE:
+                    move_up(destination_floor)
+                    current_state = ElevatorState.UP
+            else:
+                print("Invalid floor selection. Please choose a floor between basement and level 50.")
+        elif choice == '2':
+            destination_floor = int(input("Enter the desired floor (between basement and level 50): "))
+            # Validate the input floor range
+            if -1 <= destination_floor < 50:
+                # Request to move the elevator down
+                if current_state == ElevatorState.IDLE:
+                    move_down(destination_floor)
+                    current_state = ElevatorState.DOWN
+            else:
+                print("Invalid floor selection. Please choose a floor between basement and level 50.")
+        elif choice == '0':
+            print("Exiting elevator control program. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter a valid option.")
+
+if __name__ == "__main__":
+    main()
